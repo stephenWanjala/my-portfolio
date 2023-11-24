@@ -6,7 +6,7 @@
   
   const skills: Skill[] = [
     {
-      title: "Python & Django",
+      title: "Django & Rest Framework",
       level: 85,
     },
     {
@@ -39,7 +39,7 @@
       level: 80,
     },
     {
-      title : "React Js",
+      title : "React & Next Js",
       level : 70,
     },
     {
