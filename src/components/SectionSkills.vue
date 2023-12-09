@@ -11,24 +11,24 @@
     },
     {
       title: "Kotlin",
-      level: 100,
+      level: 95,
     },
     {
-      title : "Kotlin jetpack compose",
+      title : "Kotlin jetpack Compose",
+      level : 83,
+    },
+    {
+      title : "Kotlin Ktor & Spring",
       level : 80,
-    },
-    {
-      title : "Kotlin Ktor & Sping",
-      level : 70,
     },
 
     {
       title: "Relational Databases",
-      level: 100,
+      level: 96,
     },
     {
       title: "HTML5 & CSS",
-      level: 100,
+      level: 98,
     },
     {
       title: "Express Js",
@@ -36,7 +36,7 @@
     },
     {
       title: "Vue Js",
-      level: 80,
+      level: 85,
     },
     {
       title : "React & Next Js",
@@ -48,7 +48,7 @@
     },
     {
       title: "Sketch & Adobe Express",
-      level: 100,
+      level: 95,
     },
   ];
   
