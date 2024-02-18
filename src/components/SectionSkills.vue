@@ -15,20 +15,20 @@
     },
     {
       title : "Kotlin jetpack Compose",
-      level : 80,
+      level : 83,
     },
     {
       title : "Kotlin Ktor & Spring",
-      level : 70,
+      level : 80,
     },
 
     {
       title: "Relational Databases",
-      level: 95,
+      level: 96,
     },
     {
       title: "HTML5 & CSS",
-      level: 95,
+      level: 98,
     },
     {
       title: "Express Js",
@@ -36,7 +36,7 @@
     },
     {
       title: "Vue Js",
-      level: 80,
+      level: 85,
     },
     {
       title : "React & Next Js",
@@ -72,7 +72,7 @@
               :aria-valuenow="skill.level"
               aria-valuemin="0"
               aria-valuemax="100"
-            >{{ skill.level }}%</div>
+            ></div>
           </div>
         </div>
       </div>
