@@ -16,10 +16,10 @@ import  Socials from './Socials.vue';
 
             <Education />
             
-            <Languages />
+<!--            <Languages />-->
             
           
-        <Hobbies />            
+<!--        <Hobbies />-->
        
 </div>
 

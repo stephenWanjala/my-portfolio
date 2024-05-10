@@ -7,9 +7,9 @@ interface Education {
 
 const educations: Education[] = [
   {
-    degree: "Bsc. Information Technolgy",
+    degree: "Bsc. Information Technology",
     school: "Maseno University",
-    duration: "2020 - present",
+    duration: "2020 - May 2024",
   },
   {
     degree: "Kenya Certificate of Secondary Education",
