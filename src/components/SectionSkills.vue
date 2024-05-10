@@ -7,40 +7,40 @@
   const skills: Skill[] = [
     {
       title: "Django & Rest Framework",
-      level: 85,
+      level: 100,
     },
     {
       title: "Kotlin",
-      level: 95,
+      level: 100,
     },
     {
       title : "Kotlin jetpack Compose",
-      level : 83,
+      level : 100,
     },
     {
       title : "Kotlin Ktor & Spring",
-      level : 80,
+      level : 100,
     },
 
     {
       title: "Relational Databases",
-      level: 96,
+      level: 100,
     },
     {
       title: "HTML5 & CSS",
-      level: 98,
+      level: 100,
     },
     {
       title: "Express Js",
-      level: 75,
+      level: 100,
     },
     {
       title: "Vue Js",
-      level: 85,
+      level: 100,
     },
     {
       title : "React & Next Js",
-      level : 70,
+      level : 100,
     },
     {
       title: "Golang",
@@ -48,7 +48,7 @@
     },
     {
       title: "Sketch & Adobe Express",
-      level: 95,
+      level: 100,
     },
   ];
   
