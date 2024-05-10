@@ -13,6 +13,10 @@
       title: "Kotlin",
       level: 100,
     },
+   {
+      title: "Java",
+      level: 100,
+    },
     {
       title : "Kotlin jetpack Compose",
       level : 100,
