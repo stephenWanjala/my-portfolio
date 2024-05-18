@@ -8,6 +8,7 @@ const projectStore = useProjectStore(); // Initialize the Pinia store
 
 const projects = ref<Project[]>([]);
 
+
 const startString = (project: Project) => {
   return parseInt(project.stars) === 1 ? '1 star' : `${project.stars} stars`;
 }
@@ -26,7 +27,7 @@ onMounted(async () => {
       <span class="icon-holder"><i class="fa-solid fa-archive"></i></span>
       Projects
     </h2>
-
+    <v-progress-linear v-if="projectStore.isLoading"  indeterminate/>
     <div class="row">
       <div class="card-container">
         <div v-for="project in projects" :key="project.name" class="card">
