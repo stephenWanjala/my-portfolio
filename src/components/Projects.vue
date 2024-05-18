@@ -35,7 +35,7 @@ onMounted(async () => {
           <img
               :src="getImageUrl(project.image)"
               class="card-img-top img-fluid"
-              alt="Project Image"
+              :alt="project.name"
           />
           <div class="card-body">
             <h5 class="card-title">{{ project.name }}</h5>
