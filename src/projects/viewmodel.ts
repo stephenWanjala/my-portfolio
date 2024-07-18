@@ -72,6 +72,16 @@ export let projects: Project[] = [
         description: "This repository contains a CRUD (Create, Read, Update, Delete) API for a bookstore implemented using the Go programming language (Golang) and the GORM ORM library with MySQL database",
         tags: ["Go", "gorm", "mysql"]
     },
+    {
+        name :"RevVault",
+        image:"bookstore.png",
+        url:"https://github.com/stephenWanjala/RevVault.git",
+        gitName:"stephenWanjala/RevVault",
+        stars: "?",
+        forks: "?",
+        description:"Share && Access a comprehensive collection of past papers, study guides, and practice questions to prepare for your exams and achieve academic success.",
+        tags:["Kotlin","ktor","PostgreSQL","Exposed Framework"]
+    }
 
 ]
 
