@@ -9,17 +9,12 @@ import  Socials from './Socials.vue';
             <div class="profile-container">
                 <img class="profile" src="../assets/images/profile.png" alt="profile image" />
                 <h1 class="name">Wanjala Stephen</h1>
-                <h3 class="tagline">Junior Android Developer</h3>
+                <h3 class="tagline">Software Developer</h3>
             </div><!--//profile-container-->
             
             <Socials />
 
             <Education />
-            
-<!--            <Languages />-->
-            
-          
-<!--        <Hobbies />-->
        
 </div>
 
