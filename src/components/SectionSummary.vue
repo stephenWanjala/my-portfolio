@@ -7,11 +7,11 @@
       </h2>
       <div class="summary">
         <ul>
-          <li>Enthusiastic junior Android developer with a strong foundation in mobile app development using Jetpack Compose.</li>
-          <li> Proficient in Python Django &amp; Kotlin Ktor for backend development and skilled in crafting dynamic web interfaces with Vue.js.</li>
+          <li>Software Developer with a strong foundation in mobile app development using Jetpack Compose.</li>
+          <li> Proficient in Python Django &amp; Kotlin Ktor for backend development and skilled in crafting dynamic web interfaces with Vue.js.&amp; NextJs </li>
           <li> Committed to continuous learning, innovation, and creative problem-solving.</li>
           <li> Eager to contribute to impactful projects that leverage cutting-edge technologies.</li>
-          <li>Open to collaborative opportunities to create exceptional digital experiences.</li>
+          <li>Open to collaborative opportunities in Tech</li>
         </ul>
       </div><!--//summary-->
     </section>
