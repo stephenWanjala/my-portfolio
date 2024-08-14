@@ -16,6 +16,21 @@ interface Project {
 
 const experiences: Experience[] = [
   {
+    jobTitle: "Software Developer Intern",
+    time: "May 2024 - Present",
+    company:"Primesoft Solutions Limited",
+    companyLink: "https://primesoft.co.ke",
+    details: [
+      "Developing and maintaining software applications, including mobile applications(Kotlin), and desktop applications.(Java Fx) under the MaliPlus ERP.",
+      "Collaborating with cross-functional teams to analyze, design, and implement assigned new features,modules and enhancements For MaliPlus ERP .",
+      "Writing clean, maintainable, and efficient code, adhering to best practices and coding standards.",
+      "Debugging, and troubleshooting software issues to ensure optimal performance and reliability.",
+      "Providing technical support to clients, addressing their inquiries, troubleshooting issues, and offering guidance on using software applications effectively.",
+      "Contributing to the development of software architecture, design patterns, and coding standards to ensure consistency and scalability.",
+      "Participating in team meetings, stand-ups, and sprint planning sessions to coordinate work and prioritize tasks effectively."
+    ],
+  },
+  {
     jobTitle: "Information Technology Attachee",
     time: "May 2023 - July 2023",
     company: "Kibabii University",
