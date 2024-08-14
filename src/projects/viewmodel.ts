@@ -1,7 +1,7 @@
 import type { Education, Experience, Language, Skill } from "@/types/Types";
 import axios from "axios";
 import type {AxiosResponse} from "axios";
-import exp from "constants";
+
 
 export interface Contributor {
     login: string,
