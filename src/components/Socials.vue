@@ -1,16 +1,7 @@
 <script lang="ts" setup>
-interface Contact {
-  email: string;
-  phone: string;
-  linkedin: Social;
-  github: Social;
-  twitter: Social;
-}
+import type { Contact } from '@/types/Types';
 
-interface Social{
-    userName: string;
-    link: string;
-}
+
 
 const contact: Contact = {
   email: "stephenwanjala145@gmail.com",

@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-interface Education {
-  degree: string;
-  school: string;
-  duration: string;
-}
+import type { Education } from '@/types/Types';
+
+
 
 const educations: Education[] = [
   {

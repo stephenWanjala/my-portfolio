@@ -1,18 +1,8 @@
   
 <script lang="ts" setup>
-interface Experience {
-  jobTitle: string;
-  time: string;
-  company: string;
-  companyLink: string;
-  details: string[];
-}
+import type { Experience } from '@/types/Types';
 
-interface Project {
-  title: string;
-  link: string;
-  tagline: string;
-}
+
 
 const experiences: Experience[] = [
   {

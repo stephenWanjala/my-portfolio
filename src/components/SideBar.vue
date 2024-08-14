@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import Education from './Education.vue';
-import Hobbies from './Hobbies.vue'
-import Languages from './Languages.vue';
 import  Socials from './Socials.vue';
 </script>
 <template>

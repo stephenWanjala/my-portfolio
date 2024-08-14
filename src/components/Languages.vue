@@ -1,9 +1,8 @@
   
   <script lang="ts" setup>
-  interface Language {
-    name: string;
-    description: string;
-  }
+import type { Language } from '@/types/Types';
+
+  
   
   const languages: Language[] = [
     { name: 'English', description: '' },
