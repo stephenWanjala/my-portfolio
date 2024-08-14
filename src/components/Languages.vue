@@ -1,14 +1,8 @@
   
   <script lang="ts" setup>
-import type { Language } from '@/types/Types';
-
+import { usePortFolioStore } from '@/store/PortFolioStore';
   
-  
-  const languages: Language[] = [
-    { name: 'English', description: '' },
-    { name: 'Swahili', description: '' },
-  
-  ];
+  const {languages} = usePortFolioStore();
   </script>
 
 <template>
