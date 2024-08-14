@@ -21,7 +21,7 @@ const experiences: Experience[] = [
     company:"Primesoft Solutions Limited",
     companyLink: "https://primesoft.co.ke",
     details: [
-      "Developing and maintaining software applications, including mobile applications(Kotlin), and desktop applications.(Java Fx) under the MaliPlus ERP.",
+      "Contributing to development and maintainance of software applications, including mobile applications, and desktop applications under the MaliPlus ERP.",
       "Collaborating with cross-functional teams to analyze, design, and implement assigned new features,modules and enhancements For MaliPlus ERP .",
       "Writing clean, maintainable, and efficient code, adhering to best practices and coding standards.",
       "Debugging, and troubleshooting software issues to ensure optimal performance and reliability.",
