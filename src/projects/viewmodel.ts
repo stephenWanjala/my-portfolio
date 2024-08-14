@@ -1,5 +1,7 @@
+import type { Education, Experience, Language, Skill } from "@/types/Types";
 import axios from "axios";
 import type {AxiosResponse} from "axios";
+import exp from "constants";
 
 export interface Contributor {
     login: string,
@@ -127,3 +129,102 @@ export function getImageUrl(path: string): string {
 export function openLink(url: string) {
     window.open(url, "_blank");
 }
+
+export const experiences: Experience[] = [
+    {
+      jobTitle: "Software Developer Intern",
+      time: "May 2024 - Present",
+      company:"Primesoft Solutions Limited",
+      companyLink: "https://primesoft.co.ke",
+      details: [
+        "Contributing to development and maintainance of software applications, including mobile applications, and desktop applications under the MaliPlus ERP.",
+        "Collaborating with cross-functional teams to analyze, design, and implement assigned new features,modules and enhancements For MaliPlus ERP .",
+        "Writing clean, maintainable, and efficient code, adhering to best practices and coding standards.",
+        "Debugging, and troubleshooting software issues to ensure optimal performance and reliability.",
+        "Providing technical support to clients, addressing their inquiries, troubleshooting issues, and offering guidance on using software applications effectively.",
+        "Contributing to the development of software architecture, design patterns, and coding standards to ensure consistency and scalability.",
+        "Participating in team meetings, stand-ups, and sprint planning sessions to coordinate work and prioritize tasks effectively."
+      ],
+    },
+    {
+      jobTitle: "Information Technology Attachee",
+      time: "May 2023 - July 2023",
+      company: "Kibabii University",
+      companyLink: "http://www.kibu.ac.ke",
+      details: [
+        "Configuring managed switches, implementing VLANs, and securing network communications through SSH and Telnet protocols.",
+        "Performing general computer maintenance tasks, including hardware upgrades, memory enhancement, and installation of operating systems and software applications.",
+        "Installing and configuring ABUNO ERP software, ensuring seamless operation and maintaining compliance with updates and patches.",
+        "Designing and executing scripts for database automation, data normalization, and denormalization, streamlining data management processes.",
+        "Managing and configuring IP cameras, editing captured videos for presentations, and maintaining the security and integrity of video evidence.",
+        "Providing technical support to students and staff, troubleshooting software-related issues, and offering guidance on using software applications effectively.",
+        "Collaborating with cross-functional teams to enhance IT infrastructure, including transitioning from unmanaged to managed switches and optimizing access points and point-to-point radios.",
+        "Assisting in the training of staff to effectively use the ERP software and troubleshoot any issues they encountered.",
+        "Developing software solutions for clients, addressing their specific needs and contributing to the department's services."
+      ],
+    },
+  ];
+
+  export  const skills: Skill[] = [
+    {
+      title: "Django & Rest Framework",
+      level: 100,
+    },
+    {
+      title: "Kotlin & Jetpack Compose",
+      level: 100,
+    },
+    {
+      title: "Java & Java Fx",
+      level: 100,
+    },
+    {
+      title: "Kotlin Ktor & Spring Boot",
+      level: 100,
+    },
+  
+    {
+      title: "Relational Databases",
+      level: 100,
+    },
+    {
+      title: "HTML5 & CSS",
+      level: 100,
+    },
+    {
+      title: "Vue Js",
+      level: 100,
+    },
+    {
+      title: "React ,Next Js && Express",
+      level: 100,
+    },
+    {
+      title: "Golang",
+      level: 60,
+    },
+    {
+      title: "Sketch & Adobe Express",
+      level: 100,
+    },
+  ];
+  
+  
+  export const educations: Education[] = [
+    {
+      degree: "Bsc. Information Technology",
+      school: "Maseno University",
+      duration: "2020 - May 2024",
+    },
+    {
+      degree: "Kenya Certificate of Secondary Education",
+      school: "St Peter's Sang'alo High School",
+      duration: "2015 - 2019",
+    },
+  ];
+
+  export const langs: Language[] = [
+    { name: 'English', description: '' },
+    { name: 'Swahili', description: '' },
+  
+  ];

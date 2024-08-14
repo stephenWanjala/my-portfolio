@@ -1,24 +1,10 @@
 <script lang="ts" setup>
+import { usePortFolioStore } from '@/store/PortFolioStore';
 import type { Contact } from '@/types/Types';
 
 
 
-const contact: Contact = {
-  email: "stephenwanjala145@gmail.com",
-  phone: "+254723441923",
-  linkedin: {
-    userName: "Stephen Wanjala",
-    link: "https://www.linkedin.com/in/wanjalastephen5/",
-  },
-  github: {
-    userName: "stephenWanjala",
-    link: "https://github.com/stephenWanjala",
-  },
-  twitter: {
-    userName: "@Wanjalastephen5",
-    link: "https://twitter.com/wanjalastephen5",
-  },
-};
+const {contact } = usePortFolioStore();
 
 
 

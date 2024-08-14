@@ -1,44 +1,11 @@
   
 <script lang="ts" setup>
+import { usePortFolioStore } from '@/store/PortFolioStore';
 import type { Experience } from '@/types/Types';
 
+import { onMounted } from 'vue';
 
-
-const experiences: Experience[] = [
-  {
-    jobTitle: "Software Developer Intern",
-    time: "May 2024 - Present",
-    company:"Primesoft Solutions Limited",
-    companyLink: "https://primesoft.co.ke",
-    details: [
-      "Contributing to development and maintainance of software applications, including mobile applications, and desktop applications under the MaliPlus ERP.",
-      "Collaborating with cross-functional teams to analyze, design, and implement assigned new features,modules and enhancements For MaliPlus ERP .",
-      "Writing clean, maintainable, and efficient code, adhering to best practices and coding standards.",
-      "Debugging, and troubleshooting software issues to ensure optimal performance and reliability.",
-      "Providing technical support to clients, addressing their inquiries, troubleshooting issues, and offering guidance on using software applications effectively.",
-      "Contributing to the development of software architecture, design patterns, and coding standards to ensure consistency and scalability.",
-      "Participating in team meetings, stand-ups, and sprint planning sessions to coordinate work and prioritize tasks effectively."
-    ],
-  },
-  {
-    jobTitle: "Information Technology Attachee",
-    time: "May 2023 - July 2023",
-    company: "Kibabii University",
-    companyLink: "http://www.kibu.ac.ke",
-    details: [
-      "Configuring managed switches, implementing VLANs, and securing network communications through SSH and Telnet protocols.",
-      "Performing general computer maintenance tasks, including hardware upgrades, memory enhancement, and installation of operating systems and software applications.",
-      "Installing and configuring ABUNO ERP software, ensuring seamless operation and maintaining compliance with updates and patches.",
-      "Designing and executing scripts for database automation, data normalization, and denormalization, streamlining data management processes.",
-      "Managing and configuring IP cameras, editing captured videos for presentations, and maintaining the security and integrity of video evidence.",
-      "Providing technical support to students and staff, troubleshooting software-related issues, and offering guidance on using software applications effectively.",
-      "Collaborating with cross-functional teams to enhance IT infrastructure, including transitioning from unmanaged to managed switches and optimizing access points and point-to-point radios.",
-      "Assisting in the training of staff to effectively use the ERP software and troubleshoot any issues they encountered.",
-      "Developing software solutions for clients, addressing their specific needs and contributing to the department's services."
-    ],
-  },
-];
-
+const portFolioStore = usePortFolioStore();
 
 
 const projectsIntro: string = "Work in progress";
@@ -54,7 +21,7 @@ const projectsIntro: string = "Work in progress";
         <span class="icon-holder"><i class="fa-solid fa-briefcase"></i></span>
         Experiences
       </h2>
-      <div class="item" v-for="experience in experiences" :key="experience.jobTitle">
+      <div class="item" v-for="experience in portFolioStore.workExperiences" :key="experience.jobTitle">
         <div class="meta">
           <div class="upper-row">
             <h3 class="job-title">{{ experience.jobTitle }}</h3>

@@ -1,20 +1,8 @@
 <script lang="ts" setup>
-import type { Education } from '@/types/Types';
+import { usePortFolioStore } from '@/store/PortFolioStore';
 
+const {educationLevels} = usePortFolioStore();
 
-
-const educations: Education[] = [
-  {
-    degree: "Bsc. Information Technology",
-    school: "Maseno University",
-    duration: "2020 - May 2024",
-  },
-  {
-    degree: "Kenya Certificate of Secondary Education",
-    school: "St Peter's Sang'alo High School",
-    duration: "2015 - 2019",
-  },
-];
 </script>
 
 
@@ -25,7 +13,7 @@ const educations: Education[] = [
     <div class="education-container container-block">
       <h2 class="container-block-title">Education</h2>
   
-      <div class="item" v-for="education in educations" :key="education.degree">
+      <div class="item" v-for="education in educationLevels" :key="education.degree">
         <h4 class="degree">{{ education.degree }}</h4>
         <h5 class="meta">{{ education.school }}</h5>
         <div class="time">{{ education.duration }}</div>

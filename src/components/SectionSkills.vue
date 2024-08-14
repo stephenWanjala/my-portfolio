@@ -1,51 +1,7 @@
 <script lang="ts" setup>
-import type { Skill } from '@/types/Types';
+import { usePortFolioStore } from '@/store/PortFolioStore';
 
-
-
-const skills: Skill[] = [
-  {
-    title: "Django & Rest Framework",
-    level: 100,
-  },
-  {
-    title: "Kotlin & Jetpack Compose",
-    level: 100,
-  },
-  {
-    title: "Java & Java Fx",
-    level: 100,
-  },
-  {
-    title: "Kotlin Ktor & Spring Boot",
-    level: 100,
-  },
-
-  {
-    title: "Relational Databases",
-    level: 100,
-  },
-  {
-    title: "HTML5 & CSS",
-    level: 100,
-  },
-  {
-    title: "Vue Js",
-    level: 100,
-  },
-  {
-    title: "React ,Next Js && Express",
-    level: 100,
-  },
-  {
-    title: "Golang",
-    level: 60,
-  },
-  {
-    title: "Sketch & Adobe Express",
-    level: 100,
-  },
-];
+const  {technologies} = usePortFolioStore();
 
 </script>
 
@@ -57,7 +13,7 @@ const skills: Skill[] = [
       Skills &amp; Proficiency
     </h2>
     <div class="skillset">
-      <div class="item" v-for="skill in skills" :key="skill.title">
+      <div class="item" v-for="skill in technologies" :key="skill.title">
         <h3 class="level-title">{{ skill.title }}</h3>
         <div class="progress level-bar">
           <div
