@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-interface Skill {
-  title: string;
-  level: number;
-}
+import type { Skill } from '@/types/Types';
+
+
 
 const skills: Skill[] = [
   {
