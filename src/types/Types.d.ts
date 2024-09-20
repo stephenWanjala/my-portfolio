@@ -1,10 +1,13 @@
 interface Experience {
+  company: string;
+  companyLink: string;
+  logo?: string;
+  roles: {
     jobTitle: string;
-    time: string;
-    company: string;
-    companyLink: string;
+    time: { start: Date; end?: Date; current?: boolean };
     details: string[];
-  }
+  }[];
+}
   
   interface Project {
     title: string;
