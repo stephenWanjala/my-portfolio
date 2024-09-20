@@ -6,9 +6,7 @@ import type {Experience} from "@/types/Types";
 
 const portFolioStore = usePortFolioStore();
 
-portFolioStore.workExperiences.forEach((experience) => {
-  getImageUrl(experience.logo)
-});
+portFolioStore.workExperiences.values()
 
 
 const formatDate = (date: Date): string => {
