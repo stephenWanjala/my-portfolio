@@ -17,7 +17,7 @@
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "gh-pages": "^6.2.0",
-    "pinia": "^2.2.4",
+    "pinia": "^2.2.6",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5",
     "vue-template-compiler": "^2.7.16",
