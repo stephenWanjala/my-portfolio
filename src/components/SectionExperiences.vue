@@ -2,7 +2,6 @@
 import { usePortFolioStore } from '@/store/PortFolioStore'
 import { computed, ref, onMounted } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
-import { getImageUrl } from '@/projects/viewmodel'
 import gsap from 'gsap'
 
 const portFolioStore = usePortFolioStore()
@@ -90,7 +89,7 @@ const animateExperiences = () => {
             <div class="logo-container">
               <img
                   v-if="experience.logo"
-                  :src="getImageUrl(experience.logo)"
+                  :src="experience.logo"
                   :alt="experience.company"
                   class="company-logo"
               />

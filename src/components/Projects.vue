@@ -1,6 +1,6 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {onMounted, ref} from 'vue';
-import {getImageUrl, openLink, type Project} from '@/projects/viewmodel';
+import {openLink, type Project} from '@/projects/viewmodel';
 import {useProjectStore} from '@/store/projectStore';
 
 const projectStore = useProjectStore(); // Initialize the Pinia store
@@ -33,10 +33,10 @@ onMounted(async () => {
         <div v-for="project in projects" :key="project.gitName" class="card">
           <!-- Card content -->
           <VImg
-              :src="getImageUrl(project.image)"
+              :alt="project.name"
+              :src="project.image"
               class="card-img-top img-fluid"
               cover
-              :alt="project.name"
               title="{{ project.name }}"
           >
             <template v-slot:placeholder>
@@ -51,50 +51,50 @@ onMounted(async () => {
           <div class="card-body">
             <h5 class="card-title">{{ project.name }}</h5>
             <p class="card-text">{{ project.description }}</p>
-              <div class=" row">
-                <!-- Tags and Contributors -->
-                <div class="tags-and-contributors">
-                  <VCard class="tags">
-                    <strong>Tags:</strong>
-                    <ul>
-                      <li v-for="tag in project.tags" :key="tag">{{ tag }}</li>
+            <div class=" row">
+              <!-- Tags and Contributors -->
+              <div class="tags-and-contributors">
+                <VCard class="tags">
+                  <strong>Tags:</strong>
+                  <ul>
+                    <li v-for="tag in project.tags" :key="tag">{{ tag }}</li>
+                  </ul>
+                </VCard>
+
+                <!-- Contributors -->
+                <VCard class="contributors">
+                  <strong>Contributors:</strong>
+                  <div class="row align-items-center">
+                    <ul class=" d-flex flex-wrap p-3">
+                      <li v-for="contributor in project.contributors" :key="contributor.login"
+                          class="col p-2 d-flex gap-1 text-center v-list-item--border ">
+                        <div class="d-flex text-center gap-2">
+                          <VImg :src="contributor.avatar_url" alt="Contributor Avatar" height="24" rounded="circle"
+                                width="24"/>
+                          <a :href="contributor.html_url" class="text-center" target="_blank">{{
+                              contributor.login
+                            }}</a>
+                          <v-badge :content="contributor.contributions"
+                                   class="text-center mt-4 mr-3"
+                                   color="info"
+                                   floating
+                          />
+                        </div>
+                      </li>
                     </ul>
-                  </VCard>
 
-                  <!-- Contributors -->
-                  <VCard class="contributors">
-                    <strong>Contributors:</strong>
-                    <div class="row align-items-center">
-                      <ul class=" d-flex flex-wrap p-3">
-                        <li v-for="contributor in project.contributors" :key="contributor.login"
-                            class="col p-2 d-flex gap-1 text-center v-list-item--border ">
-                          <div class="d-flex text-center gap-2">
-                            <VImg rounded="circle" width="24" height="24" :src="contributor.avatar_url"
-                                  alt="Contributor Avatar"/>
-                            <a :href="contributor.html_url" target="_blank" class="text-center">{{
-                                contributor.login
-                              }}</a>
-                            <v-badge :content="contributor.contributions"
-                                     floating
-                                     color="info"
-                                     class="text-center mt-4 mr-3"
-                            />
-                          </div>
-                        </li>
-                      </ul>
-
-                    </div>
-                  </VCard>
-                </div>
+                  </div>
+                </VCard>
               </div>
+            </div>
 
 
             <div class="d-flex justify-content-between align-items-center mt-3">
               <p class="m-2 font-lg">{{ startString(project) }}</p>
               <p class="m-2 font-lg">{{ project.forks }} forks</p>
 
-              <VBtn class="btn btn-outline-secondary" @click="openLink(project.url)"
-                    variant="outlined">
+              <VBtn class="btn btn-outline-secondary" variant="outlined"
+                    @click="openLink(project.url)">
                 Source <i class="bi bi-github ml-2"></i>
               </VBtn>
             </div>
