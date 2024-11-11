@@ -26,7 +26,7 @@ export interface Project {
 export let projects: Project[] = Array.of<Project>(
     {
         name: "geoSpartial_village",
-        image: "geosparcial.jpeg",
+        image: "/images/geosparcial.jpeg",
         url: "https://github.com/stephenWanjala/geoSpartial_village",
         gitName: "stephenWanjala/geoSpartial_village",
         stars: "?",
@@ -36,7 +36,7 @@ export let projects: Project[] = Array.of<Project>(
     },
     {
         name: "NoShame",
-        image: "noshame.png",
+        image: "/images/noshame.png",
         url: "https://github.com/stephenWanjala/No-shame",
         gitName: "stephenWanjala/No-shame",
         stars: "?",
@@ -46,7 +46,7 @@ export let projects: Project[] = Array.of<Project>(
     },
     {
         name: "sakko",
-        image: "sakko.jpg",
+        image: "/images/sakko.jpg",
         url: "https://github.com/stephenWanjala/sakko",
         gitName: "stephenWanjala/sakko",
         description: "A web platform that aims to eliminate the exploitation of rural milk farmers by middlemen. ",
@@ -56,7 +56,7 @@ export let projects: Project[] = Array.of<Project>(
     },
     {
         name: "ktor-jwtAuth ",
-        image: "ktor.png",
+        image: "/images/ktor.png",
         url: "https://github.com/stephenWanjala/ktor-jwtAuth",
         gitName: "stephenWanjala/ktor-jwtAuth",
         stars: "?",
@@ -66,7 +66,7 @@ export let projects: Project[] = Array.of<Project>(
     },
     {
         name: "bookstore ",
-        image: "bookstore.png",
+        image: "/images/bookstore.png",
         url: "https://github.com/stephenWanjala/bookstore",
         gitName: "stephenWanjala/bookstore",
         stars: "?",
@@ -76,7 +76,7 @@ export let projects: Project[] = Array.of<Project>(
     },
     {
         name: "RevVault",
-        image: "bookstore.png",
+        image: "/images/bookstore.png",
         url: "https://github.com/stephenWanjala/RevVault.git",
         gitName: "stephenWanjala/RevVault",
         stars: "?",
@@ -134,7 +134,7 @@ export const experiences: Experience[] = Array.of<Experience>(
     {
         company: "Primesoft Solutions Limited",
         companyLink: "https://primesoft.co.ke",
-        logo: "primesoft.png",
+        logo: "images/primesoft.png",
         roles: [
             {
                 time: {start: new Date("2024-09-01"), current: true},
@@ -164,7 +164,7 @@ export const experiences: Experience[] = Array.of<Experience>(
     {
         company: "Kibabii University",
         companyLink: "https://kibu.ac.ke",
-        logo: "kibabii.png",
+        logo: "images/kibabii.png",
         roles: [
             {
                 time: {start: new Date("2023-05-25"), end: new Date("2023-08-08")},

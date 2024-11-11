@@ -1,20 +1,20 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import Education from './Education.vue';
-import  Socials from './Socials.vue';
+import Socials from './Socials.vue';
 </script>
 <template>
-<div class="sidebar-wrapper">
-            <div class="profile-container">
-                <img class="profile" src="../assets/images/profile.png" alt="profile image" />
-                <h1 class="name">Wanjala Stephen</h1>
-                <h3 class="tagline">Software Developer</h3>
-            </div><!--//profile-container-->
-            
-            <Socials />
+  <div class="sidebar-wrapper">
+    <div class="profile-container">
+      <img alt="profile image" class="profile" src="/images/profile.png"/>
+      <h1 class="name">Wanjala Stephen</h1>
+      <h3 class="tagline">Software Developer</h3>
+    </div><!--//profile-container-->
 
-            <Education />
-       
-</div>
+    <Socials/>
+
+    <Education/>
+
+  </div>
 
 </template>
 
