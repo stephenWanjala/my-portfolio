@@ -1,20 +1,20 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+<script lang="ts" setup>
+import {RouterLink, RouterView} from 'vue-router'
 </script>
 
 <template>
-  
+
   <header>
-  
+
 
     <div class="wrapper">
 
       <nav>
         <RouterLink to="/"/>
-              </nav>
+      </nav>
     </div>
   </header>
 
-  <RouterView />
+  <RouterView/>
 </template>
 

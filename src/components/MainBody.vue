@@ -11,10 +11,10 @@ import Projects from './Projects.vue';
         <SideBarVue />
         <div class="main-wrapper">
             <SectionSummary/>
-    
+
             <SectionExperiences/>
             <Projects/>
-            
+
             <SectionSkills />
 
         </div>

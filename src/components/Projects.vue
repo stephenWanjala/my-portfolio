@@ -2,6 +2,7 @@
 import {onMounted, ref} from 'vue';
 import {openLink, type Project} from '@/projects/viewmodel';
 import {useProjectStore} from '@/store/projectStore';
+import {VSkeletonLoader} from "vuetify/components";
 
 const projectStore = useProjectStore(); // Initialize the Pinia store
 
@@ -27,7 +28,7 @@ onMounted(async () => {
       <span class="icon-holder"><i class="fa-solid fa-archive"></i></span>
       Projects
     </h2>
-    <v-progress-linear v-if="projectStore.isLoading" indeterminate/>
+    <VSkeletonLoader v-if="projectStore.isLoading" type="card" />
     <div class="row">
       <div class="card-container">
         <div v-for="project in projects" :key="project.gitName" class="card">
