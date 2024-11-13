@@ -55,26 +55,6 @@ export let projects: Project[] = Array.of<Project>(
         tags: ["python Django", "Rest_framework", "jwt"]
     },
     {
-        name: "ktor-jwtAuth ",
-        image: "/images/ktor.png",
-        url: "https://github.com/stephenWanjala/ktor-jwtAuth",
-        gitName: "stephenWanjala/ktor-jwtAuth",
-        stars: "?",
-        forks: "?",
-        description: "A simple ktor application with jwt authentication (Learning how to use ktor)",
-        tags: ["Kotlin", "ktor", "jwt", "mongodb"]
-    },
-    {
-        name: "bookstore ",
-        image: "/images/bookstore.png",
-        url: "https://github.com/stephenWanjala/bookstore",
-        gitName: "stephenWanjala/bookstore",
-        stars: "?",
-        forks: "?",
-        description: "This repository contains a CRUD (Create, Read, Update, Delete) API for a bookstore implemented using the Go programming language (Golang) and the GORM ORM library with MySQL database",
-        tags: ["Go", "gorm", "mysql"]
-    },
-    {
         name: "RevVault",
         image: "/images/bookstore.png",
         url: "https://github.com/stephenWanjala/RevVault.git",
