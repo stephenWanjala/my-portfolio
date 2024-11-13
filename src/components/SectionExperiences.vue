@@ -3,6 +3,7 @@ import { usePortFolioStore } from '@/store/PortFolioStore'
 import { computed, ref, onMounted } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
 import gsap from 'gsap'
+import {VSkeletonLoader} from "vuetify/components";
 
 const portFolioStore = usePortFolioStore()
 const sectionRef = ref<HTMLElement | null>(null)
@@ -75,6 +76,7 @@ const animateExperiences = () => {
         Experience
       </h2>
       <div class="header-line"></div>
+      <VSkeletonLoader v-if="portFolioStore.isLoading" type="card" />
     </div>
 
     <div class="timeline">
