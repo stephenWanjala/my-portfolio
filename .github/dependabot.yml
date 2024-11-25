@@ -4,8 +4,21 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly" # Frequency of checks
-    open-pull-requests-limit: 1 # Limit to a single open PR
+    open-pull-requests-limit: 3
     groups:
-      all-updates:
+      vue-and-vuetify:
         patterns:
-          - "*" # Match all dependencies
+          - "vue"
+          - "vuetify"
+      gsap:
+        patterns:
+          - "gsap"
+      pinia:
+        patterns:
+          - "pinia"
+      vue-use:
+        patterns:
+          - "@vueuse/*"
+      typescript:
+        patterns:
+          - "typescript"
