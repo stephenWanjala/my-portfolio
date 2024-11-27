@@ -8,41 +8,48 @@ interface Experience {
     details: string[];
   }[];
 }
-  
-  interface Project {
-    title: string;
-    link: string;
-    tagline: string;
-  }
 
-  interface Contact {
-    email: string;
-    phone: string;
-    linkedin: Social;
-    github: Social;
-    twitter: Social;
-  }
-  
-  interface Social{
-      userName: string;
-      link: string;
-  }
+interface Project {
+  title: string;
+  link: string;
+  tagline: string;
+}
 
-  interface Skill {
-    title: string;
-    level: number;
-  }
+interface Contact {
+  email: string;
+  phone: string;
+  linkedin: Social;
+  github: Social;
+  twitter: Social;
+}
 
-  interface Education {
-    degree: string;
-    school: string;
-    duration: string;
-  }
+interface Social {
+  userName: string;
+  link: string;
+}
 
-  interface Language {
-    name: string;
-    description: string;
-  }
+interface Skill {
+  title: string;
+  level: number;
+}
 
+interface Education {
+  degree: string;
+  school: string;
+  duration: string;
+}
 
-  export type { Experience, Project, Contact, Social, Skill, Education, Language };
+interface Language {
+  name: string;
+  description: string;
+}
+
+export type {
+  Experience,
+  Project,
+  Contact,
+  Social,
+  Skill,
+  Education,
+  Language,
+};

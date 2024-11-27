@@ -1,71 +1,84 @@
 <script setup lang="ts">
-import { usePortFolioStore } from '@/store/PortFolioStore'
-import { computed, ref, onMounted } from 'vue'
-import { useIntersectionObserver } from '@vueuse/core'
-import gsap from 'gsap'
-import {VSkeletonLoader} from "vuetify/components";
+import { usePortFolioStore } from "@/store/PortFolioStore";
+import { computed, ref, onMounted } from "vue";
+import { useIntersectionObserver } from "@vueuse/core";
+import gsap from "gsap";
+import { VSkeletonLoader } from "vuetify/components";
 
-const portFolioStore = usePortFolioStore()
-const sectionRef = ref<HTMLElement | null>(null)
+const portFolioStore = usePortFolioStore();
+const sectionRef = ref<HTMLElement | null>(null);
 
 const formatDate = (date: Date): string => {
-  const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' }
-  return new Date(date).toLocaleDateString('en-US', options)
-}
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+  };
+  return new Date(date).toLocaleDateString("en-US", options);
+};
 
 const calculateTimeSince = (start: Date, end: Date): string => {
-  const diffTime = Math.abs(end.getTime() - start.getTime())
-  const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365))
-  const diffMonths = Math.floor((diffTime % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30))
+  const diffTime = Math.abs(end.getTime() - start.getTime());
+  const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
+  const diffMonths = Math.floor(
+    (diffTime % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30),
+  );
 
-  let timeSince = ''
+  let timeSince = "";
   if (diffYears > 0) {
-    timeSince += `${diffYears} yr${diffYears > 1 ? 's' : ''}`
+    timeSince += `${diffYears} yr${diffYears > 1 ? "s" : ""}`;
   }
   if (diffMonths > 0) {
-    timeSince += timeSince ? ' ' : ''
-    timeSince += `${diffMonths} mo${diffMonths > 1 ? 's' : ''}`
+    timeSince += timeSince ? " " : "";
+    timeSince += `${diffMonths} mo${diffMonths > 1 ? "s" : ""}`;
   }
-  return timeSince || ' 1 month'
-}
+  return timeSince || " 1 month";
+};
 
-const currentDate = computed(() => new Date())
+const currentDate = computed(() => new Date());
 
-const formatTimeRange = (start: Date, end?: Date, current?: boolean): string => {
-  const startDate = new Date(start)
-  const endDate = current ? currentDate.value : end ? new Date(end) : currentDate.value
+const formatTimeRange = (
+  start: Date,
+  end?: Date,
+  current?: boolean,
+): string => {
+  const startDate = new Date(start);
+  const endDate = current
+    ? currentDate.value
+    : end
+      ? new Date(end)
+      : currentDate.value;
 
-  const formattedStart = formatDate(startDate)
-  const formattedEnd = current ? 'Present' : formatDate(endDate)
-  const timeSince = calculateTimeSince(startDate, endDate)
+  const formattedStart = formatDate(startDate);
+  const formattedEnd = current ? "Present" : formatDate(endDate);
+  const timeSince = calculateTimeSince(startDate, endDate);
 
-  return `${formattedStart} - ${formattedEnd} · ${timeSince}`
-}
+  return `${formattedStart} - ${formattedEnd} · ${timeSince}`;
+};
 
 onMounted(() => {
   if (sectionRef.value) {
     const { stop } = useIntersectionObserver(
-        sectionRef.value,
-        ([{ isIntersecting }]) => {
-          if (isIntersecting) {
-            animateExperiences()
-            stop()
-          }
-        },
-        { threshold: 0.2 }
-    )
+      sectionRef.value,
+      ([{ isIntersecting }]) => {
+        if (isIntersecting) {
+          animateExperiences();
+          stop();
+        }
+      },
+      { threshold: 0.2 },
+    );
   }
-})
+});
 
 const animateExperiences = () => {
-  gsap.from('.experience-item', {
+  gsap.from(".experience-item", {
     y: 30,
     opacity: 0,
     duration: 0.6,
     stagger: 0.2,
-    ease: 'power2.out'
-  })
-}
+    ease: "power2.out",
+  });
+};
 </script>
 
 <template>
@@ -81,19 +94,19 @@ const animateExperiences = () => {
 
     <div class="timeline">
       <div
-          v-for="experience in portFolioStore.workExperiences"
-          :key="experience.company"
-          class="experience-item"
+        v-for="experience in portFolioStore.workExperiences"
+        :key="experience.company"
+        class="experience-item"
       >
         <div class="timeline-dot"></div>
         <div class="experience-card">
           <div class="company-header">
             <div class="logo-container">
               <img
-                  v-if="experience.logo"
-                  :src="experience.logo"
-                  :alt="experience.company"
-                  class="company-logo"
+                v-if="experience.logo"
+                :src="experience.logo"
+                :alt="experience.company"
+                class="company-logo"
               />
               <div v-else class="logo-placeholder">
                 {{ experience.company.charAt(0) }}
@@ -102,9 +115,9 @@ const animateExperiences = () => {
             <div class="company-info">
               <h3>
                 <a
-                    :href="experience.companyLink"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  :href="experience.companyLink"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {{ experience.company }}
                 </a>
@@ -114,14 +127,20 @@ const animateExperiences = () => {
 
           <div class="roles-container">
             <div
-                v-for="role in experience.roles"
-                :key="role.jobTitle"
-                class="role"
+              v-for="role in experience.roles"
+              :key="role.jobTitle"
+              class="role"
             >
               <div class="role-header">
                 <h4>{{ role.jobTitle }}</h4>
                 <span class="duration">
-                  {{ formatTimeRange(role.time.start, role.time.end, role.time.current) }}
+                  {{
+                    formatTimeRange(
+                      role.time.start,
+                      role.time.end,
+                      role.time.current,
+                    )
+                  }}
                 </span>
               </div>
               <ul class="achievements">
@@ -176,7 +195,7 @@ const animateExperiences = () => {
   padding-left: 2rem;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
@@ -211,14 +230,18 @@ const animateExperiences = () => {
   background: #fff;
   border-radius: 1rem;
   padding: 1.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-  0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 }
 
@@ -315,7 +338,7 @@ const animateExperiences = () => {
     line-height: 1.5;
 
     &::before {
-      content: '•';
+      content: "•";
       position: absolute;
       left: 0.5rem;
       color: #4299e1;
