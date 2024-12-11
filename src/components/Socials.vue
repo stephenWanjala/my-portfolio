@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import { usePortFolioStore } from "@/store/PortFolioStore";
-import type { Contact } from "@/types/Types";
+import {usePortFolioStore} from "@/store/PortFolioStore";
 
-const { contact } = usePortFolioStore();
+const {contact} = usePortFolioStore();
 
 const phoneLink = `tel:${contact.phone}`;
 </script>
@@ -16,10 +15,10 @@ const phoneLink = `tel:${contact.phone}`;
           contact.email
         }}</a>
       </li>
-      <li class="phone">
-        <i class="fa-solid fa-phone"></i
-        ><a :href="phoneLink">{{ contact.phone }}</a>
-      </li>
+      <!--      <li class="phone">-->
+      <!--        <i class="fa-solid fa-phone"></i-->
+      <!--        ><a :href="phoneLink">{{ contact.phone }}</a>-->
+      <!--      </li>-->
       <li class="linkedin">
         <i class="fa-brands fa-linkedin-in"></i
         ><a :href="contact.linkedin.link" target="_blank">{{
