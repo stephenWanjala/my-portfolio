@@ -29,7 +29,6 @@ updates:
       dev-tools:
         patterns:
           - "vite"
-          - "typescript"
           - "eslint"
           - "prettier"
           - "@rushstack/eslint-patch"
@@ -39,7 +38,9 @@ updates:
           - "@vue/eslint-config-prettier"
           - "@vue/eslint-config-typescript"
           - "@vue/tsconfig"
-
+      typescript:
+        patterns:
+          - "typescript"
       http-and-deploy:
         patterns:
           - "axios"
