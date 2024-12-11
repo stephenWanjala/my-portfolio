@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import {usePortFolioStore} from "@/store/PortFolioStore";
+import { usePortFolioStore } from "@/store/PortFolioStore";
 
-const {contact} = usePortFolioStore();
+const { contact } = usePortFolioStore();
 
 const phoneLink = `tel:${contact.phone}`;
 </script>
