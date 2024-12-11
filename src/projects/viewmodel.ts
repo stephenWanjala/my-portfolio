@@ -1,4 +1,4 @@
-import type { Education, Experience, Language, Skill } from "@/types/Types";
+import type { Education, Experience, Language, Skill } from "@/types/Types.ts";
 import axios from "axios";
 import type { AxiosResponse } from "axios";
 

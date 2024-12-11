@@ -6,7 +6,7 @@ import type {
   Language,
   Project,
   Skill,
-} from "@/types/Types";
+} from "@/types/Types.ts";
 import { defineStore } from "pinia";
 import { ref, type Ref } from "vue";
 
