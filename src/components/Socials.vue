@@ -32,8 +32,7 @@ const phoneLink = `tel:${contact.phone}`;
         }}</a>
       </li>
       <li class="twitter">
-        <i class="fa-brands fa-twitter"></i
-        ><a :href="contact.twitter.link" target="_blank">{{
+        <i class="fa-brands fa-x-twitter"></i><a :href="contact.twitter.link" target="_blank">{{
           contact.twitter.userName
         }}</a>
       </li>

@@ -53,7 +53,7 @@ export const usePortFolioStore = defineStore("portfolio", () => {
       link: "https://github.com/stephenWanjala",
     },
     twitter: {
-      userName: "@Wanjalastephen5",
+      userName: "Wanjalastephen5",
       link: "https://twitter.com/wanjalastephen5",
     },
   };
