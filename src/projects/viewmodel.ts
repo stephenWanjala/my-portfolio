@@ -173,10 +173,6 @@ export const skills: Skill[] = [
     level: 100,
   },
   {
-    title: "Golang",
-    level: 60,
-  },
-  {
     title: "Sketch & Adobe Express",
     level: 100,
   },
