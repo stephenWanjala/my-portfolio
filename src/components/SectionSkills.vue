@@ -70,7 +70,6 @@ onMounted(() => {
                 :icon="skill.icon || 'mdi-code-braces'"
               />
             </template>
-
             <div class="text-h6 font-weight-medium">{{ skill.title }}</div>
           </v-card>
         </v-hover>
