@@ -32,39 +32,6 @@ export let projects: Project[] = Array.of<Project>(
     description: "Health IT hackathon 2024 Digimal solution",
     tags: ["Vue 3", "Pinia", "LeafLet js", "TypeScript", "Vuetify3"],
   },
-  {
-    name: "NoShame",
-    image: "/images/noshame.png",
-    url: "https://github.com/stephenWanjala/No-shame",
-    gitName: "stephenWanjala/No-shame",
-    stars: "?",
-    forks: "?",
-    description:
-      "An application to track women's menstrual cycle and provide information on menstrual health and awereness on menstrual hygiene",
-    tags: ["Android", "Kotlin", "Jetpack Compose"],
-  },
-  {
-    name: "sakko",
-    image: "/images/sakko.jpg",
-    url: "https://github.com/stephenWanjala/sakko",
-    gitName: "stephenWanjala/sakko",
-    description:
-      "A web platform that aims to eliminate the exploitation of rural milk farmers by middlemen. ",
-    stars: "?",
-    forks: "?",
-    tags: ["python Django", "Rest_framework", "jwt"],
-  },
-  {
-    name: "RevVault",
-    image: "/images/bookstore.png",
-    url: "https://github.com/stephenWanjala/RevVault.git",
-    gitName: "stephenWanjala/RevVault",
-    stars: "?",
-    forks: "?",
-    description:
-      "Share && Access a comprehensive collection of past papers, study guides, and practice questions to prepare for your exams and achieve academic success.",
-    tags: ["Kotlin", "ktor", "PostgreSQL", "Exposed Framework"],
-  },
 );
 
 export interface projectWithStarsCallBack {
