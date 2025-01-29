@@ -44,28 +44,28 @@ onMounted(() => {
 
     <v-row class="justify-center">
       <v-col
-          v-for="skill in technologies"
-          :key="skill.title"
-          cols="6"
-          sm="4"
-          md="3"
-          class="skill-item"
+        v-for="skill in technologies"
+        :key="skill.title"
+        cols="6"
+        sm="4"
+        md="3"
+        class="skill-item"
       >
         <v-hover v-slot="{ isHovering, props }">
           <v-card
-              v-bind="props"
-              :class="{ 'skill-card-hover': isHovering }"
-              class="skill-card text-center pa-4"
-              elevation="4"
+            v-bind="props"
+            :class="{ 'skill-card-hover': isHovering }"
+            class="skill-card text-center pa-4"
+            elevation="4"
           >
             <template v-if="loadingIcons[skill.title]">
               <v-progress-circular indeterminate color="primary" size="40" />
             </template>
             <template v-else>
               <v-icon
-                  size="64"
-                  :class="`mb-4 ${skill.color} ${isHovering ? 'text-primary' : ''}`"
-                  :icon="skill.icon || 'mdi-code-braces'"
+                size="64"
+                :class="`mb-4 ${skill.color} ${isHovering ? 'text-primary' : ''}`"
+                :icon="skill.icon || 'mdi-code-braces'"
               />
             </template>
             <div class="text-h6 font-weight-medium">{{ skill.title }}</div>

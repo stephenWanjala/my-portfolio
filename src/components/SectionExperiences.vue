@@ -84,7 +84,7 @@ const animateExperiences = () => {
 <template>
   <section ref="sectionRef" class="experience-section">
     <div class="section-header">
-      <h2>
+      <h2 class="section-title">
         <i class="fas fa-briefcase"></i>
         Experience
       </h2>
@@ -170,14 +170,14 @@ const animateExperiences = () => {
   h2 {
     font-size: 2rem;
     font-weight: 700;
-    color: #2d3748;
+    //color: #2d3748;
     margin: 0;
     display: flex;
     align-items: center;
     gap: 1rem;
 
     i {
-      color: #4a5568;
+      //color: #4a5568;
       font-size: 1.5rem;
     }
   }
