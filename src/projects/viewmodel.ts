@@ -21,18 +21,16 @@ export interface Project {
   contributors?: Contributor[];
 }
 
-export let projects: Project[] = Array.of<Project>(
-  {
-    name: "geoSpartial_village",
-    image: "/images/geosparcial.jpeg",
-    url: "https://github.com/stephenWanjala/geoSpartial_village",
-    gitName: "stephenWanjala/geoSpartial_village",
-    stars: "?",
-    forks: "?",
-    description: "Health IT hackathon 2024 Digimal solution",
-    tags: ["Vue 3", "Pinia", "LeafLet js", "TypeScript", "Vuetify3"],
-  },
-);
+export let projects: Project[] = Array.of<Project>({
+  name: "geoSpartial_village",
+  image: "/images/geosparcial.jpeg",
+  url: "https://github.com/stephenWanjala/geoSpartial_village",
+  gitName: "stephenWanjala/geoSpartial_village",
+  stars: "?",
+  forks: "?",
+  description: "Health IT hackathon 2024 Digimal solution",
+  tags: ["Vue 3", "Pinia", "LeafLet js", "TypeScript", "Vuetify3"],
+});
 
 export interface projectWithStarsCallBack {
   (result: Project[]): void;
@@ -142,61 +140,64 @@ export const skills: Skill[] = [
   {
     title: "Django & Rest Framework",
     level: 100,
-    icon:"devicon-django-plain",color:"colored"
+    icon: "devicon-django-plain",
+    color: "colored",
   },
   {
     title: "Kotlin",
     level: 100,
-    icon:"devicon-kotlin-plain",
-    color:"colored"
-  } ,{
+    icon: "devicon-kotlin-plain",
+    color: "colored",
+  },
+  {
     title: "Jetpack Compose",
     level: 100,
-    icon:"devicon-jetpackcompose-plain-wordmark",
-    color:"colored"
+    icon: "devicon-jetpackcompose-plain-wordmark",
+    color: "colored",
   },
   {
     title: "Java & Java Fx",
     level: 100,
-    icon:"devicon-java-plain-wordmark",
-    color:"colored"
+    icon: "devicon-java-plain-wordmark",
+    color: "colored",
   },
   {
     title: "Kotlin Ktor & Spring Boot",
     level: 100,
-    color:"colored",
-    icon:"devicon-ktor-plain-wordmark"
+    color: "colored",
+    icon: "devicon-ktor-plain-wordmark",
   },
 
   {
     title: "Relational Databases",
     level: 100,
-    color:"colored",
-    icon:"devicon-azuresqldatabase-plain",
+    color: "colored",
+    icon: "devicon-azuresqldatabase-plain",
   },
   {
     title: "HTML5 & CSS",
     level: 100,
-    color:"colored",
-    icon :"devicon-html5-plain"
+    color: "colored",
+    icon: "devicon-html5-plain",
   },
   {
     title: "Vue Js",
     level: 100,
-    icon:"devicon-vuejs-plain",
-    color:"colored"
+    icon: "devicon-vuejs-plain",
+    color: "colored",
   },
+
   {
-    title: "React ,Next Js && Express",
+    title: "React ,Next Js & Express",
     level: 100,
-    icon:"devicon-react-original",
-    color:"colored"
+    icon: "devicon-react-original",
+    color: "colored",
   },
   {
     title: "Sketch & Adobe Express",
     level: 100,
-    icon:"devicon-sketch-plain",
-    color:"colored"
+    icon: "devicon-sketch-plain",
+    color: "colored",
   },
 ];
 
