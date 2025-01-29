@@ -6,10 +6,19 @@ import { usePortFolioStore } from "@/store/PortFolioStore.ts";
 
 const { technologies } = usePortFolioStore();
 const skillsSection = ref<HTMLElement | null>(null);
+const loadingIcons = ref<Record<string, boolean>>({});
 
 gsap.registerPlugin(ScrollTrigger);
 
 onMounted(() => {
+  technologies.forEach((skill) => {
+    loadingIcons.value[skill.title] = true;
+
+    // Simulated artificial delay to "load" the icon (since v-icon doesn't have a load event)
+    setTimeout(() => {
+      loadingIcons.value[skill.title] = false;
+    }, 1000); // Adjust the delay as needed
+  });
   if (skillsSection.value) {
     gsap.from(document.querySelectorAll(".skill-item"), {
       opacity: 0,
@@ -51,11 +60,16 @@ onMounted(() => {
             class="skill-card text-center pa-4"
             elevation="4"
           >
-            <v-icon
-              size="64"
-              :class="`mb-4 ${skill.color} ${isHovering ? 'text-primary' : ''}`"
-              :icon="String(skill.icon) || 'mdi-code-braces'"
-            />
+            <template v-if="loadingIcons[skill.title]">
+              <v-progress-circular indeterminate color="primary" size="40" />
+            </template>
+            <template v-else>
+              <v-icon
+                size="64"
+                :class="`mb-4 ${skill.color} ${isHovering ? 'text-primary' : ''}`"
+                :icon="skill.icon || 'mdi-code-braces'"
+              />
+            </template>
             <div class="text-h6 font-weight-medium">{{ skill.title }}</div>
           </v-card>
         </v-hover>
