@@ -142,39 +142,61 @@ export const skills: Skill[] = [
   {
     title: "Django & Rest Framework",
     level: 100,
+    icon:"devicon-django-plain",color:"colored"
   },
   {
-    title: "Kotlin & Jetpack Compose",
+    title: "Kotlin",
     level: 100,
+    icon:"devicon-kotlin-plain",
+    color:"colored"
+  } ,{
+    title: "Jetpack Compose",
+    level: 100,
+    icon:"devicon-jetpackcompose-plain-wordmark",
+    color:"colored"
   },
   {
     title: "Java & Java Fx",
     level: 100,
+    icon:"devicon-java-plain-wordmark",
+    color:"colored"
   },
   {
     title: "Kotlin Ktor & Spring Boot",
     level: 100,
+    color:"colored",
+    icon:"devicon-ktor-plain-wordmark"
   },
 
   {
     title: "Relational Databases",
     level: 100,
+    color:"colored",
+    icon:"devicon-azuresqldatabase-plain",
   },
   {
     title: "HTML5 & CSS",
     level: 100,
+    color:"colored",
+    icon :"devicon-html5-plain"
   },
   {
     title: "Vue Js",
     level: 100,
+    icon:"devicon-vuejs-plain",
+    color:"colored"
   },
   {
     title: "React ,Next Js && Express",
     level: 100,
+    icon:"devicon-react-original",
+    color:"colored"
   },
   {
     title: "Sketch & Adobe Express",
     level: 100,
+    icon:"devicon-sketch-plain",
+    color:"colored"
   },
 ];
 

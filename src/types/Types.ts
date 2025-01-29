@@ -31,6 +31,8 @@ interface Social {
 interface Skill {
   title: string;
   level: number;
+  icon:String,
+  color: String,
 }
 
 interface Education {
