@@ -1,229 +1,206 @@
-import type { Education, Experience, Language, Skill } from "@/types/Types.ts";
+import type {Education, Experience, Language, Skill} from "@/types/Types.ts";
 import axios from "axios";
-import type { AxiosResponse } from "axios";
+import type {AxiosResponse} from "axios";
 
+// Project & Contributor Interfaces
 export interface Contributor {
-  login: string;
-  avatar_url: string;
-  html_url: string;
-  contributions: number;
+    login: string;
+    avatar_url: string;
+    html_url: string;
+    contributions: number;
 }
 
 export interface Project {
-  name: string;
-  image: string;
-  url: string;
-  gitName: string;
-  stars: string;
-  forks: string;
-  description?: string;
-  tags: string[];
-  contributors?: Contributor[];
+    name: string;
+    image: string;
+    url: string;
+    gitName: string;
+    stars: string;
+    forks: string;
+    description?: string;
+    tags: string[];
+    contributors?: Contributor[];
 }
 
-export let projects: Project[] = Array.of<Project>({
-  name: "geoSpartial_village",
-  image: "/images/geosparcial.jpeg",
-  url: "https://github.com/stephenWanjala/geoSpartial_village",
-  gitName: "stephenWanjala/geoSpartial_village",
-  stars: "?",
-  forks: "?",
-  description: "Health IT hackathon 2024 Digimal solution",
-  tags: ["Vue 3", "Pinia", "LeafLet js", "TypeScript", "Vuetify3"],
-},{
-  name:"Multiply",
-  url:"https://github.com/stephenWanjala/Multiply",
-  gitName:"stephenWanjala/Multiply",
-  stars: "?",
-  forks: "?",
-  description:"Simple Android app to help kids improve their multiplication skills in a fun and interactive way.",
-  tags:["Android","Kotlin","JetPack Compose"],
-  image:"/images/multiply.png",
-});
-
-export interface projectWithStarsCallBack {
-  (result: Project[]): void;
-}
-
-export function getProjectWithStars(onFinish: projectWithStarsCallBack) {
-  let newProjects: Project[] = [];
-  let requests = projects.map(async (project) => {
-    try {
-      let response1 = await axios.get(
-        `https://api.github.com/repos/${project.gitName}`,
-      );
-      project.stars = response1.data.stargazers_count;
-      project.forks = response1.data.forks;
-      let response2: AxiosResponse<any, any> = await axios.get(
-        `https://api.github.com/repos/${project.gitName}/contributors`,
-      );
-      project.contributors = response2.data.map(
-        (contributor: Contributor) => contributor,
-      );
-      newProjects.push(project);
-      console.log(newProjects);
-    } catch (error) {
-      console.error(error);
+// Projects Data
+export let projects: Project[] = [
+    {
+        name: "geoSpartial_village",
+        image: "/images/geosparcial.jpeg",
+        url: "https://github.com/stephenWanjala/geoSpartial_village",
+        gitName: "stephenWanjala/geoSpartial_village",
+        stars: "?",
+        forks: "?",
+        description: "Health IT hackathon 2024 Digimal solution",
+        tags: ["Vue 3", "Pinia", "LeafLet js", "TypeScript", "Vuetify3"],
+    },
+    {
+        name: "Multiply",
+        url: "https://github.com/stephenWanjala/Multiply",
+        gitName: "stephenWanjala/Multiply",
+        stars: "?",
+        forks: "?",
+        description: "Simple Android app to help kids improve their multiplication skills in a fun and interactive way.",
+        tags: ["Android", "Kotlin", "JetPack Compose"],
+        image: "/images/multiply.png",
     }
-  });
+];
 
-  Promise.all(requests).then(() => {
-    newProjects.sort((a, b) => {
-      if (a.stars > b.stars) {
-        return -1;
-      } else if (a.stars < b.stars) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
-
-    onFinish(newProjects);
-  });
+// Callback Interface
+export interface projectWithStarsCallBack {
+    (result: Project[]): void;
 }
 
+// Cache Constants
+const CACHE_KEY = 'github_projects_cache';
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
+// Fetch Projects with Stars and Contributors
+export function getProjectWithStars(onFinish: projectWithStarsCallBack) {
+    const now = Date.now();
+    const cacheEntry = localStorage.getItem(CACHE_KEY);
+
+    // Use Cache if Valid
+    if (cacheEntry) {
+        const parsedCache = JSON.parse(cacheEntry);
+        if (now < parsedCache.expires) {
+            processAndSortData(parsedCache.data, onFinish);
+            return;
+        }
+    }
+
+    // GraphQL Query
+    const query = buildProjectsQuery();
+
+    axios
+        .post(
+            'https://api.github.com/graphql',
+            {query},
+            {
+                headers: {
+                    Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
+                    'Content-Type': 'application/json',
+                },
+            }
+        )
+        .then((response: AxiosResponse<any>) => {
+            const newData = response.data.data;
+            updateCache(newData);
+            processAndSortData(newData, onFinish);
+        })
+        .catch((error) => {
+            console.error('GitHub API Error:', error);
+            onFinish([...projects]); // Fallback to static projects
+        });
+}
+
+// Build GraphQL Query for Projects
+function buildProjectsQuery(): string {
+    return `query { 
+        ${projects.map((project, index) => {
+        const [owner, repo] = project.gitName.split('/');
+        return `
+                repo${index}: repository(owner: "${owner}", name: "${repo}") {
+                    stargazerCount
+                    forkCount
+                    mentionableUsers(first: 10) {
+                        nodes {
+                            login
+                            avatarUrl
+                            url
+                        }
+                    }
+                }
+            `;
+    }).join('\n')}
+    }`;
+}
+
+// Process and Sort Data
+function processAndSortData(data: any, callback: projectWithStarsCallBack) {
+    const updatedProjects = projects.map((project, index) => ({
+        ...project,
+        ...extractRepoData(data[`repo${index}`]),
+    }));
+
+    // Sort by stars, then forks
+    updatedProjects.sort((a, b) => parseInt(b.stars) - parseInt(a.stars) || parseInt(b.forks) - parseInt(a.forks));
+
+    callback(updatedProjects);
+}
+
+// Extract Repository Data
+function extractRepoData(repoData: any): Partial<Project> {
+    if (!repoData) return {};
+    return {
+        stars: repoData.stargazerCount?.toString() || "?",
+        forks: repoData.forkCount?.toString() || "?",
+        contributors: repoData.mentionableUsers?.nodes?.map((node: any) => ({
+            login: node.login,
+            avatar_url: node.avatarUrl,
+            html_url: node.url,
+            contributions: 0, // GitHub API does not provide this in GraphQL
+        })) || [],
+    };
+}
+
+// Cache Data
+function updateCache(data: any) {
+    localStorage.setItem(CACHE_KEY, JSON.stringify({data, expires: Date.now() + CACHE_TTL}));
+}
+
+// Get Image URL
 export function getImageUrl(path: string): string {
-  let url = new URL(`/src/assets/images/${path}`, import.meta.url);
-  return url.href;
+    return new URL(`/src/assets/images/${path}`, import.meta.url).href;
 }
 
+// Open External Link
 export function openLink(url: string) {
-  window.open(url, "_blank");
+    window.open(url, "_blank");
 }
 
-export const experiences: Experience[] = Array.of<Experience>(
-  {
-    company: "Primesoft Solutions Limited",
-    companyLink: "https://primesoft.co.ke",
-    logo: "images/primesoft.png",
-    roles: [
-      {
-        time: { start: new Date("2024-09-01"), current: true },
-        jobTitle: "Software Developer",
-        details: [
-          "Developing and maintaining software applications, including mobile, and desktop applications under the MaliPlus ERP.",
-          "Design, and implement assigned features, modules, and enhancements for MaliPlus ERP.",
-          "Collaborate with Support Team to troubleshoot and resolve software issues.",
+// Experience Data
+export const experiences: Experience[] = [
+    {
+        company: "Primesoft Solutions Limited",
+        companyLink: "https://primesoft.co.ke",
+        logo: "images/primesoft.png",
+        roles: [
+            {
+                time: {start: new Date("2024-09-01"), current: true},
+                jobTitle: "Software Developer",
+                details: [
+                    "Developing and maintaining software applications, including mobile, and desktop applications under the MaliPlus ERP.",
+                    "Design, and implement assigned features, modules, and enhancements for MaliPlus ERP.",
+                    "Collaborate with Support Team to troubleshoot and resolve software issues.",
+                ],
+            }
         ],
-      },
-      {
-        time: { start: new Date("2024-05-25"), end: new Date("2024-08-30") },
-        jobTitle: "Software Developer Intern",
-        details: [
-          "Contributing to development and maintenance of software desktop applications under the MaliPlus ERP.",
-          "Collaborating with cross-functional teams to analyze, design, and implement assigned new features, modules and enhancements for MaliPlus ERP.",
-          "Writing clean, maintainable, and efficient code, adhering to best practices and coding standards.",
-          "Debugging, and troubleshooting software issues ",
-          "Providing technical support to clients, addressing their inquiries, troubleshooting issues, and offering guidance on using software applications effectively.",
-          "Contributing to the development of software architecture, design patterns, and coding standards to ensure consistency and scalability.",
-          "Participating in team meetings, stand-ups, and sprint planning sessions to coordinate work and prioritize tasks effectively.",
-        ],
-      },
-    ],
-  },
-  {
-    company: "Kibabii University",
-    companyLink: "https://kibu.ac.ke",
-    logo: "images/kibabii.png",
-    roles: [
-      {
-        time: { start: new Date("2023-05-25"), end: new Date("2023-08-08") },
-        jobTitle: "Information Technology Attachment",
-        details: [
-          "Configuring managed switches, implementing VLANs, and securing network communications through SSH and Telnet protocols.",
-          "Performing general computer maintenance tasks, including hardware upgrades, memory enhancement, and installation of operating systems and software applications.",
-          "Installing and configuring ABNO ERP software, ensuring seamless operation and maintaining compliance with updates and patches.",
-          "Designing and executing scripts for database automation, data normalization, and de-normalization, streamlining data management processes.",
-          "Managing and configuring IP cameras, editing captured videos for presentations, and maintaining the security and integrity of video evidence.",
-          "Providing technical support to students and staff, troubleshooting software-related issues, and offering guidance on using software applications effectively.",
-          "Collaborating with cross-functional teams to enhance IT infrastructure, including transitioning from unmanaged to managed switches and optimizing access points and point-to-point radios.",
-          "Assisting in the training of staff to effectively use the ERP software and troubleshoot any issues they encountered.",
-          "Developing software solutions for clients, addressing their specific needs and contributing to the department's services.",
-        ],
-      },
-    ],
-  },
-);
+    }
+];
 
+// Skills Data
 export const skills: Skill[] = [
-  {
-    title: "Django & Rest Framework",
-    level: 100,
-    icon: "devicon-django-plain",
-    color: "colored",
-  },
-  {
-    title: "Kotlin",
-    level: 100,
-    icon: "devicon-kotlin-plain",
-    color: "colored",
-  },
-  {
-    title: "Jetpack Compose",
-    level: 100,
-    icon: "devicon-jetpackcompose-plain-wordmark",
-    color: "colored",
-  },
-  {
-    title: "Java & Java Fx",
-    level: 100,
-    icon: "devicon-java-plain-wordmark",
-    color: "colored",
-  },
-  {
-    title: "Kotlin Ktor & Spring Boot",
-    level: 100,
-    color: "colored",
-    icon: "devicon-ktor-plain-wordmark",
-  },
-
-  {
-    title: "Relational Databases",
-    level: 100,
-    color: "colored",
-    icon: "devicon-azuresqldatabase-plain",
-  },
-  {
-    title: "HTML5 & CSS",
-    level: 100,
-    color: "colored",
-    icon: "devicon-html5-plain",
-  },
-  {
-    title: "Vue Js",
-    level: 100,
-    icon: "devicon-vuejs-plain",
-    color: "colored",
-  },
-
-  {
-    title: "React ,Next Js & Express",
-    level: 100,
-    icon: "devicon-react-original",
-    color: "colored",
-  },
-  {
-    title: "Sketch & Adobe Express",
-    level: 100,
-    icon: "devicon-sketch-plain",
-    color: "colored",
-  },
+    {title: "Django & Rest Framework", level: 100, icon: "devicon-django-plain", color: "colored"},
+    {title: "Kotlin", level: 100, icon: "devicon-kotlin-plain", color: "colored"},
+    {title: "Jetpack Compose", level: 100, icon: "devicon-jetpackcompose-plain-wordmark", color: "colored"},
+    {title: "Java & Java Fx", level: 100, icon: "devicon-java-plain-wordmark", color: "colored"},
+    {title: "Kotlin Ktor & Spring Boot", level: 100, color: "colored", icon: "devicon-ktor-plain-wordmark"},
+    {title: "Vue Js", level: 100, icon: "devicon-vuejs-plain", color: "colored"},
 ];
 
+// Education Data
 export const educations: Education[] = [
-  {
-    degree: "Bsc. Information Technology",
-    school: "Maseno University",
-    duration: "2020 - May 2024",
-  },
-  {
-    degree: "Kenya Certificate of Secondary Education",
-    school: "St Peter's Sang'alo High School",
-    duration: "2015 - 2019",
-  },
+    {degree: "Bsc. Information Technology", school: "Maseno University", duration: "2020 - May 2024"},
+    {
+        degree: "Kenya Certificate of Secondary Education",
+        school: "St Peter's Sang'alo High School",
+        duration: "2015 - 2019"
+    },
 ];
 
+// Languages
 export const langs: Language[] = [
-  { name: "English", description: "" },
-  { name: "Swahili", description: "" },
+    {name: "English", description: ""},
+    {name: "Swahili", description: ""},
 ];
