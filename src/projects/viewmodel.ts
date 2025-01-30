@@ -22,6 +22,20 @@ export interface Project {
     contributors?: Contributor[];
 }
 
+interface GithubGraphQLResponse {
+    [key: string]: {
+        stargazerCount: number;
+        forkCount: number;
+        mentionableUsers: {
+            nodes: Array<{
+                login: string;
+                avatarUrl: string;
+                url: string;
+            }>;
+        };
+    };
+}
+
 // Projects Data
 export let projects: Project[] = [
     {
@@ -51,9 +65,23 @@ export interface projectWithStarsCallBack {
     (result: Project[]): void;
 }
 
-// Cache Constants
 const CACHE_KEY = 'github_projects_cache';
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
+// Helper function to safely interact with localStorage
+function safeLocalStorage(action: 'get' | 'set', key: string, value?: string): string | null {
+    try {
+        if (action === 'get') {
+            return localStorage.getItem(key);
+        } else {
+            localStorage.setItem(key, value!);
+            return null;
+        }
+    } catch (e) {
+        console.warn('localStorage is not available:', e);
+        return null;
+    }
+}
 
 // Fetch Projects with Stars and Contributors
 export function getProjectWithStars(onFinish: projectWithStarsCallBack) {
@@ -98,7 +126,15 @@ export function getProjectWithStars(onFinish: projectWithStarsCallBack) {
 function buildProjectsQuery(): string {
     return `query { 
         ${projects.map((project, index) => {
+        if (!project.gitName || !project.gitName.includes('/')) {
+            console.error(`Invalid gitName format for project: ${project.name}`);
+            return '';
+        }
         const [owner, repo] = project.gitName.split('/');
+        if (!owner || !repo) {
+            console.error(`Missing owner or repo for project: ${project.name}`);
+            return '';
+        }
         return `
                 repo${index}: repository(owner: "${owner}", name: "${repo}") {
                     stargazerCount
@@ -117,7 +153,7 @@ function buildProjectsQuery(): string {
 }
 
 // Process and Sort Data
-function processAndSortData(data: any, callback: projectWithStarsCallBack) {
+function processAndSortData(data: GithubGraphQLResponse, callback: projectWithStarsCallBack) {
     const updatedProjects = projects.map((project, index) => ({
         ...project,
         ...extractRepoData(data[`repo${index}`]),
@@ -130,7 +166,7 @@ function processAndSortData(data: any, callback: projectWithStarsCallBack) {
 }
 
 // Extract Repository Data
-function extractRepoData(repoData: any): Partial<Project> {
+function extractRepoData(repoData: GithubGraphQLResponse[string]): Partial<Project> {
     if (!repoData) return {};
     return {
         stars: repoData.stargazerCount?.toString() || "?",
