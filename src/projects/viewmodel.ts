@@ -86,7 +86,7 @@ function safeLocalStorage(action: 'get' | 'set', key: string, value?: string): s
 // Fetch Projects with Stars and Contributors
 export function getProjectWithStars(onFinish: projectWithStarsCallBack) {
     const now = Date.now();
-    const cacheEntry = localStorage.getItem(CACHE_KEY);
+    const cacheEntry = safeLocalStorage("get",CACHE_KEY);
 
     // Use Cache if Valid
     if (cacheEntry) {
@@ -117,7 +117,13 @@ export function getProjectWithStars(onFinish: projectWithStarsCallBack) {
             processAndSortData(newData, onFinish);
         })
         .catch((error) => {
-            console.error('GitHub API Error:', error);
+            const errorMessage = error.response?.data?.message || error.message || 'Unknown error';
+            const errorStatus = error.response?.status;
+            console.error('GitHub API Error:', {
+                status: errorStatus,
+                message: errorMessage,
+                documentation_url: error.response?.data?.documentation_url
+            })
             onFinish([...projects]); // Fallback to static projects
         });
 }
