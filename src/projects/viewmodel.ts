@@ -30,6 +30,15 @@ export let projects: Project[] = Array.of<Project>({
   forks: "?",
   description: "Health IT hackathon 2024 Digimal solution",
   tags: ["Vue 3", "Pinia", "LeafLet js", "TypeScript", "Vuetify3"],
+},{
+  name:"Multiply",
+  url:"https://github.com/stephenWanjala/Multiply",
+  gitName:"stephenWanjala/Multiply",
+  stars: "?",
+  forks: "?",
+  description:"Simple Android app to help kids improve their multiplication skills in a fun and interactive way.",
+  tags:["Android","Kotlin","JetPack Compose"],
+  image:"/images/multiply.png",
 });
 
 export interface projectWithStarsCallBack {
