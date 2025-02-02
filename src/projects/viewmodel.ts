@@ -21,20 +21,6 @@ export interface Project {
   contributors?: Contributor[];
 }
 
-interface GithubGraphQLResponse {
-  [key: string]: {
-    stargazerCount: number;
-    forkCount: number;
-    mentionableUsers: {
-      nodes: Array<{
-        login: string;
-        avatarUrl: string;
-        url: string;
-      }>;
-    };
-  };
-}
-
 // Projects Data
 export let projects: Project[] = [
   {
@@ -54,16 +40,12 @@ export let projects: Project[] = [
     stars: "?",
     forks: "?",
     description:
-      "Simple Android app to help kids improve their multiplication skills in a fun and interactive way.",
+        "Simple Android app to help kids improve their multiplication skills in a fun and interactive way.",
     tags: ["Android", "Kotlin", "JetPack Compose"],
     image: "/images/multiply.png",
   },
 ];
 
-// Callback Interface
-export interface projectWithStarsCallBack {
-  (result: Project[]): void;
-}
 // Cache Constants
 const CACHE_KEY = "github_projects_cache";
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
@@ -93,16 +75,8 @@ export function getProjectWithStars(onFinish: (result: Project[]) => void) {
     if (!gitName.includes("/")) return Promise.resolve(null);
     const [owner, repo] = gitName.split("/");
     return axios.all([
-      axios.get(`https://api.github.com/repos/${owner}/${repo}`, {
-        headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
-        },
-      }),
-      axios.get(`https://api.github.com/repos/${owner}/${repo}/contributors`, {
-        headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
-        },
-      }),
+      axios.get(`https://api.github.com/repos/${owner}/${repo}`),
+      axios.get(`https://api.github.com/repos/${owner}/${repo}/contributors`),
     ]);
   });
 
@@ -113,12 +87,12 @@ export function getProjectWithStars(onFinish: (result: Project[]) => void) {
         projects[index].stars = repoResponse.data.stargazers_count.toString();
         projects[index].forks = repoResponse.data.forks_count.toString();
         projects[index].contributors = contributorsResponse.data.map(
-          (c: any) => ({
-            login: c.login,
-            avatar_url: c.avatar_url,
-            html_url: c.html_url,
-            contributions: c.contributions,
-          }),
+            (c: any) => ({
+              login: c.login,
+              avatar_url: c.avatar_url,
+              html_url: c.html_url,
+              contributions: c.contributions,
+            }),
         );
       } else {
         console.error(`Error fetching data for ${projects[index].name}`);
@@ -129,14 +103,14 @@ export function getProjectWithStars(onFinish: (result: Project[]) => void) {
     });
 
     projects.sort(
-      (a, b) =>
-        parseInt(b.stars) - parseInt(a.stars) ||
-        parseInt(b.forks) - parseInt(a.forks),
+        (a, b) =>
+            parseInt(b.stars) - parseInt(a.stars) ||
+            parseInt(b.forks) - parseInt(a.forks),
     );
     safeLocalStorage(
-      "set",
-      CACHE_KEY,
-      JSON.stringify({ data: projects, expires: Date.now() + CACHE_TTL }),
+        "set",
+        CACHE_KEY,
+        JSON.stringify({ data: projects, expires: Date.now() + CACHE_TTL }),
     );
     onFinish(projects);
   });
