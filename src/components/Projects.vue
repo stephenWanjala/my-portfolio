@@ -35,7 +35,7 @@ onMounted(async () => {
             :src="project.image"
             class="card-img-top img-fluid"
             cover
-            title="{{ project.name }}"
+            :title="project.name"
           >
             <template v-slot:placeholder>
               <div class="d-flex align-center justify-center fill-height">

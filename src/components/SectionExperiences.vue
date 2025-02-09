@@ -159,7 +159,7 @@ const animateExperiences = () => {
 <style lang="scss" scoped>
 .experience-section {
   max-width: 900px;
-  margin: 0 auto;
+  //margin: 0 auto;
   padding: 2rem;
 }
 
@@ -168,16 +168,15 @@ const animateExperiences = () => {
   position: relative;
 
   h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    //color: #2d3748;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    //font-size: 2rem;
+    //font-weight: 700;
+    //margin: 0;
+    //display: flex;
+    //align-items: center;
+    //gap: 1rem;
 
     i {
-      //color: #4a5568;
+      color: #4a5568;
       font-size: 1.5rem;
     }
   }

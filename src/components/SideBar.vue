@@ -9,7 +9,6 @@ import Socials from "./Socials.vue";
       <h1 class="name">Wanjala Stephen</h1>
       <h3 class="tagline">Software Developer</h3>
     </div>
-    <!--//profile-container-->
 
     <Socials />
 
