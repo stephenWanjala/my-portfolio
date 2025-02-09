@@ -41,7 +41,7 @@ p {
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-wrapper {
@@ -116,14 +116,14 @@ p {
 .sidebar-wrapper .education-container .meta {
   color: rgba(255, 255, 255, 0.6);
   font-weight: 500;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   margin-top: 0;
   font-size: 14px;
 }
 .sidebar-wrapper .education-container .time {
   color: rgba(255, 255, 255, 0.6);
   font-weight: 500;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 .sidebar-wrapper .languages-container .lang-desc {
   color: rgba(255, 255, 255, 0.6);
@@ -149,8 +149,7 @@ p {
 
 .main-wrapper {
   background: #fff;
-  padding: 60px;
-  padding-right: 300px;
+  padding: 60px 300px 60px 60px;
 }
 .main-wrapper .section-title {
   text-transform: uppercase;
@@ -245,8 +244,7 @@ p {
 }
 
 .footer {
-  padding: 30px;
-  padding-top: 60px;
+  padding: 60px 30px 30px;
 }
 .footer .copyright {
   line-height: 1.6;
@@ -257,7 +255,7 @@ p {
   color: #fb866a;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 768px) {
   .sidebar-wrapper {
     position: static;
     width: inherit;

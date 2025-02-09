@@ -1,10 +1,22 @@
-<script lang="ts" setup>
-import MainBodyVue from "@/components/MainBody.vue";
+<script setup lang="ts">
+import SectionSkills from "@/components/SectionSkills.vue";
+import SideBarVue from "@/components/SideBar.vue";
+import SectionSummary from "@/components/SectionSummary.vue";
+import SectionExperiences from "@/components/SectionExperiences.vue";
+import Projects from "@/components/Projects.vue";
 import FooterVue from "@/components/FooterVue.vue";
 </script>
-
 <template>
-  <MainBodyVue />
+  <div class="wrapper mt-lg-5">
+    <SideBarVue />
+    <div class="main-wrapper">
+      <SectionSummary />
 
-  <FooterVue />
+      <SectionExperiences />
+      <Projects />
+
+      <SectionSkills />
+      <FooterVue />
+    </div>
+  </div>
 </template>

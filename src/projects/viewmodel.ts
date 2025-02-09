@@ -40,7 +40,7 @@ export let projects: Project[] = [
     stars: "?",
     forks: "?",
     description:
-        "Simple Android app to help kids improve their multiplication skills in a fun and interactive way.",
+      "Simple Android app to help kids improve their multiplication skills in a fun and interactive way.",
     tags: ["Android", "Kotlin", "JetPack Compose"],
     image: "/images/multiply.png",
   },
@@ -87,12 +87,12 @@ export function getProjectWithStars(onFinish: (result: Project[]) => void) {
         projects[index].stars = repoResponse.data.stargazers_count.toString();
         projects[index].forks = repoResponse.data.forks_count.toString();
         projects[index].contributors = contributorsResponse.data.map(
-            (c: any) => ({
-              login: c.login,
-              avatar_url: c.avatar_url,
-              html_url: c.html_url,
-              contributions: c.contributions,
-            }),
+          (c: any) => ({
+            login: c.login,
+            avatar_url: c.avatar_url,
+            html_url: c.html_url,
+            contributions: c.contributions,
+          }),
         );
       } else {
         console.error(`Error fetching data for ${projects[index].name}`);
@@ -103,14 +103,14 @@ export function getProjectWithStars(onFinish: (result: Project[]) => void) {
     });
 
     projects.sort(
-        (a, b) =>
-            parseInt(b.stars) - parseInt(a.stars) ||
-            parseInt(b.forks) - parseInt(a.forks),
+      (a, b) =>
+        parseInt(b.stars) - parseInt(a.stars) ||
+        parseInt(b.forks) - parseInt(a.forks),
     );
     safeLocalStorage(
-        "set",
-        CACHE_KEY,
-        JSON.stringify({ data: projects, expires: Date.now() + CACHE_TTL }),
+      "set",
+      CACHE_KEY,
+      JSON.stringify({ data: projects, expires: Date.now() + CACHE_TTL }),
     );
     onFinish(projects);
   });
@@ -127,57 +127,57 @@ export function openLink(url: string) {
 
 // Experience Data
 export const experiences: Experience[] = Array.of<Experience>(
-    {
-      company: "Primesoft Solutions Limited",
-      companyLink: "https://primesoft.co.ke",
-      logo: "images/primesoft.png",
-      roles: [
-        {
-          time: { start: new Date("2024-09-01"), current: true },
-          jobTitle: "Software Developer",
-          details: [
-            "Developing and maintaining software applications, including mobile, and desktop applications under the MaliPlus ERP.",
-            "Design, and implement assigned features, modules, and enhancements for MaliPlus ERP.",
-            "Collaborate with Support Team to troubleshoot and resolve software issues.",
-          ],
-        },
-        {
-          time: { start: new Date("2024-05-25"), end: new Date("2024-08-30") },
-          jobTitle: "Software Developer Intern",
-          details: [
-            "Contributing to development and maintenance of software desktop applications under the MaliPlus ERP.",
-            "Collaborating with cross-functional teams to analyze, design, and implement assigned new features, modules and enhancements for MaliPlus ERP.",
-            "Writing clean, maintainable, and efficient code, adhering to best practices and coding standards.",
-            "Debugging, and troubleshooting software issues ",
-            "Providing technical support to clients, addressing their inquiries, troubleshooting issues, and offering guidance on using software applications effectively.",
-            "Contributing to the development of software architecture, design patterns, and coding standards to ensure consistency and scalability.",
-            "Participating in team meetings, stand-ups, and sprint planning sessions to coordinate work and prioritize tasks effectively.",
-          ],
-        },
-      ],
-    },
-    {
-      company: "Kibabii University",
-      companyLink: "https://kibu.ac.ke",
-      logo: "images/kibabii.png",
-      roles: [
-        {
-          time: { start: new Date("2023-05-25"), end: new Date("2023-08-08") },
-          jobTitle: "Information Technology Attachment",
-          details: [
-            "Configuring managed switches, implementing VLANs, and securing network communications through SSH and Telnet protocols.",
-            "Performing general computer maintenance tasks, including hardware upgrades, memory enhancement, and installation of operating systems and software applications.",
-            "Installing and configuring ABNO ERP software, ensuring seamless operation and maintaining compliance with updates and patches.",
-            "Designing and executing scripts for database automation, data normalization, and de-normalization, streamlining data management processes.",
-            "Managing and configuring IP cameras, editing captured videos for presentations, and maintaining the security and integrity of video evidence.",
-            "Providing technical support to students and staff, troubleshooting software-related issues, and offering guidance on using software applications effectively.",
-            "Collaborating with cross-functional teams to enhance IT infrastructure, including transitioning from unmanaged to managed switches and optimizing access points and point-to-point radios.",
-            "Assisting in the training of staff to effectively use the ERP software and troubleshoot any issues they encountered.",
-            "Developing software solutions for clients, addressing their specific needs and contributing to the department's services.",
-          ],
-        },
-      ],
-    },
+  {
+    company: "Primesoft Solutions Limited",
+    companyLink: "https://primesoft.co.ke",
+    logo: "images/primesoft.png",
+    roles: [
+      {
+        time: { start: new Date("2024-09-01"), current: true },
+        jobTitle: "Software Developer",
+        details: [
+          "Developing and maintaining software applications, including mobile, and desktop applications under the MaliPlus ERP.",
+          "Design, and implement assigned features, modules, and enhancements for MaliPlus ERP.",
+          "Collaborate with Support Team to troubleshoot and resolve software issues.",
+        ],
+      },
+      {
+        time: { start: new Date("2024-05-25"), end: new Date("2024-08-30") },
+        jobTitle: "Software Developer Intern",
+        details: [
+          "Contributing to development and maintenance of software desktop applications under the MaliPlus ERP.",
+          "Collaborating with cross-functional teams to analyze, design, and implement assigned new features, modules and enhancements for MaliPlus ERP.",
+          "Writing clean, maintainable, and efficient code, adhering to best practices and coding standards.",
+          "Debugging, and troubleshooting software issues ",
+          "Providing technical support to clients, addressing their inquiries, troubleshooting issues, and offering guidance on using software applications effectively.",
+          "Contributing to the development of software architecture, design patterns, and coding standards to ensure consistency and scalability.",
+          "Participating in team meetings, stand-ups, and sprint planning sessions to coordinate work and prioritize tasks effectively.",
+        ],
+      },
+    ],
+  },
+  {
+    company: "Kibabii University",
+    companyLink: "https://kibu.ac.ke",
+    logo: "images/kibabii.png",
+    roles: [
+      {
+        time: { start: new Date("2023-05-25"), end: new Date("2023-08-08") },
+        jobTitle: "Information Technology Attachment",
+        details: [
+          "Configuring managed switches, implementing VLANs, and securing network communications through SSH and Telnet protocols.",
+          "Performing general computer maintenance tasks, including hardware upgrades, memory enhancement, and installation of operating systems and software applications.",
+          "Installing and configuring ABNO ERP software, ensuring seamless operation and maintaining compliance with updates and patches.",
+          "Designing and executing scripts for database automation, data normalization, and de-normalization, streamlining data management processes.",
+          "Managing and configuring IP cameras, editing captured videos for presentations, and maintaining the security and integrity of video evidence.",
+          "Providing technical support to students and staff, troubleshooting software-related issues, and offering guidance on using software applications effectively.",
+          "Collaborating with cross-functional teams to enhance IT infrastructure, including transitioning from unmanaged to managed switches and optimizing access points and point-to-point radios.",
+          "Assisting in the training of staff to effectively use the ERP software and troubleshoot any issues they encountered.",
+          "Developing software solutions for clients, addressing their specific needs and contributing to the department's services.",
+        ],
+      },
+    ],
+  },
 );
 
 // Skills Data

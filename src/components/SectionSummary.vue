@@ -11,9 +11,10 @@
           using Jetpack Compose.
         </li>
         <li>
-          Proficient in Python Django &amp; Kotlin Ktor for backend development
-          and skilled in crafting dynamic web interfaces with Vue.js.&amp;
-          NextJs
+          Proficient in Python Django &#38; Kotlin Ktor for backend development
+        </li>
+        <li>
+          Skilled in crafting dynamic web interfaces with Vue.js.&amp; NextJs
         </li>
         <li>
           Committed to continuous learning, innovation, and creative

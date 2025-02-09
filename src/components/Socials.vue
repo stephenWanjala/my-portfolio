@@ -2,8 +2,6 @@
 import { usePortFolioStore } from "@/store/PortFolioStore";
 
 const { contact } = usePortFolioStore();
-
-const phoneLink = `tel:${contact.phone}`;
 </script>
 
 <template>
@@ -15,10 +13,6 @@ const phoneLink = `tel:${contact.phone}`;
           contact.email
         }}</a>
       </li>
-      <!--      <li class="phone">-->
-      <!--        <i class="fa-solid fa-phone"></i-->
-      <!--        ><a :href="phoneLink">{{ contact.phone }}</a>-->
-      <!--      </li>-->
       <li class="linkedin">
         <i class="fa-brands fa-linkedin-in"></i
         ><a :href="contact.linkedin.link" target="_blank">{{
