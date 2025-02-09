@@ -102,7 +102,7 @@ const animateExperiences = () => {
         <div class="experience-card">
           <div class="company-header">
             <div class="logo-container">
-              <img
+              <VImg
                 v-if="experience.logo"
                 :src="experience.logo"
                 :alt="experience.company"
