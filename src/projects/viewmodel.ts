@@ -42,7 +42,7 @@ export let projects: Project[] = [
     description:
       "Simple Android app to help kids improve their multiplication skills in a fun and interactive way.",
     tags: ["Android", "Kotlin", "JetPack Compose"],
-    image: "/images/multiply.png",
+    image: "/images/multiply.gif",
   },
 ];
 
